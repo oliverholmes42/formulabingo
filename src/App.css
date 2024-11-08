@@ -1,0 +1,55 @@
+:root {
+    --red: #FF1801; /* Primary accent */
+    --black: #000000; /* Backgrounds and main text */
+    --white: #FFFFFF; /* Text and backgrounds */
+    --gray: #e5e5e5; /* Lighter gray for secondary elements */
+    --gold: #FFC700; /* Richer gold for boosted squares */
+    --silver: #c0c0c0; /* More vibrant silver for alternative highlight */
+
+  }
+  
+
+*{
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 550;
+}
+
+button {
+    background-color: var(--red); /* Primary accent color */
+    color: var(--white); /* Text color */
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #e60000; /* Slightly darker red for hover */
+    transform: scale(1.05); /* Small pop effect */
+  }
+  
+  button:active {
+    background-color: #cc0000; /* Even darker red for active state */
+    transform: scale(1); /* Reset scale */
+  }
+  
+  button:disabled {
+    background-color: var(--gray); /* Disabled button */
+    color: var(--black);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .hoverable{
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+
+  .hoverable:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+  

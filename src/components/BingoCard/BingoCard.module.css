@@ -1,0 +1,167 @@
+/* Container for the entire bingo card */
+.bingoCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 20px auto;
+    padding: 2rem;
+    border-radius: 10px;
+    background-color: var(--gray);
+    width: 90%;
+    max-width: 700px;
+}
+
+.Header{
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--red);
+    text-align: center;
+}
+
+/* Expanded cell modal container */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--black);
+    text-align: center;
+}
+
+/* Title styling for expanded cell */
+.title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: var(--black);
+    margin-bottom: 5px;
+}
+
+/* Description styling for expanded cell */
+.description {
+    font-size: 1rem;
+    color: var(--black);
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+/* Status and boost container */
+.status {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    align-items: center;
+    border-top: 1px solid var(--gray);
+    padding-top: 10px;
+}
+
+/* Styling for Claimed and Locked labels */
+.statusLabel {
+    font-weight: bold;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.claimed {
+    background-color: var(--red);
+    color: var(--white);
+}
+
+.locked {
+    background-color: var(--gray);
+    color: var(--black);
+}
+
+/* Boost label styling */
+.boost {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Silver and gold boost colors */
+.silver {
+    background-color: silver;
+    color: var(--black);
+}
+
+.gold {
+    background-color: gold;
+    color: var(--black);
+}
+
+/* Icon styling inside cells for boosts */
+.boostIcon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1rem;
+    color: var(--black);
+}
+
+
+/* Each row in the bingo card */
+.row {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: space-between;
+}
+
+/* Base styling for each cell */
+.cell {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    background-color: var(--white);
+    color: var(--black);
+    font-size: 1rem;
+    font-weight: bold;
+    position: relative;
+}
+
+.PointTally{
+    text-align: center;
+    background-color: var(--gray);
+    padding: 20px;
+    width: 90%;
+    max-width: 700px;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+
+.status-true::after {
+    content: '';
+    position: absolute;
+    width: 80%; /* Adjust size of the "O" as needed */
+    height: 80%;
+    border: 5px solid var(--red); /* Border creates the "O" effect */
+    border-radius: 50%; /* Makes it a circular outline */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centers the "O" within the cell */
+    z-index: 1; /* Ensures it appears above the cell content */
+}
+
+/* Boost level 2 - Silver color */
+.boost-2 {
+    background-color: silver;
+    color: var(--black);
+    border: 2px solid var(--white);
+}
+
+/* Boost level 3 - Gold color */
+.boost-3 {
+    background-color: gold;
+    border: 2px solid var(--white);
+    color: var(--black);
+}

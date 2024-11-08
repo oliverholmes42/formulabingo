@@ -1,0 +1,60 @@
+/* Container for the leaderboard */
+.container {
+    min-width: 350px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--gray);
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Leaderboard title */
+.title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--red);
+    margin-bottom: 20px;
+}
+
+/* Table styling for leaderboard rows */
+.table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual row styling */
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Rank styling */
+.rank {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--black);
+    width: 30px;
+    text-align: center;
+}
+
+/* Name styling */
+.name {
+    flex: 1;
+    font-size: 1.1rem;
+    color: var(--black);
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* Points styling */
+.points {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--black);
+}
