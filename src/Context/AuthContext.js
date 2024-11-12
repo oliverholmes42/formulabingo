@@ -12,22 +12,27 @@ export const useAuth = () => {
 // AuthProvider component
 export function AuthProvider({ children }) {
     const [id, setId] = useState(sessionStorage.getItem("userId") || null);
+    const [admin, setAdmin] = useState(sessionStorage.getItem("admin") === "true");
 
-    const Clogin = (userId) => {
+    const Clogin = (userId, isAdmin) => {
         setId(userId);
+        setAdmin(isAdmin);
         sessionStorage.setItem("userId", userId);
+        sessionStorage.setItem("admin", isAdmin);
     };
 
     const logout = () => {
         setId(null);
-        sessionStorage.removeItem("userId");
+        setAdmin(false);
+        sessionStorage.clear();
     };
 
     // Check if session has expired every 10 minutes
     useEffect(() => {
         const checkSession = setInterval(() => {
             if (!sessionStorage.getItem("userId")) {
-                setId(null); // Clear id if session has expired
+                setId(null);
+                setAdmin(false);
                 console.log("Session expired. User logged out.");
             }
         }, 600000); // 10 minutes in milliseconds
@@ -40,6 +45,7 @@ export function AuthProvider({ children }) {
         id,
         Clogin,
         logout,
+        admin
     };
 
     return (

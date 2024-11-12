@@ -8,13 +8,15 @@ import './App.css';
 import NavBar from "./components/navBar/NavBar";
 import { AuthProvider } from "./Context/AuthContext";
 import LoginPage from "./navPages/authPages/LoginPage";
+import BricksPage from "./navPages/BricksPage";
+import SignupPage from "./navPages/authPages/SignupPage";
 
 function Layout() {
   return (
     <div>
-      <NavBar />
-      <Outlet />
-    </div>
+            <NavBar />
+            <div className="content"><Outlet /></div>
+        </div>
   );
 }
 
@@ -25,7 +27,9 @@ const router = createBrowserRouter(
       <Route path="/cards" element={<CardsPage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/bricks" element={<BricksPage/>}/>
       <Route path="/login" element={<LoginPage />}/>
+      <Route path="/signup" element={<SignupPage/>}/>
     </Route>
   )
 );

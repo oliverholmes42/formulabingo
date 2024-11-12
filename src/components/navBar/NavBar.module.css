@@ -50,6 +50,11 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.authButtons{
+    display: flex;
+    gap: 10px;
+}
+
 .button:hover {
     background-color: var(--gray);
     transform: scale(1.01); /* Small pop effect */

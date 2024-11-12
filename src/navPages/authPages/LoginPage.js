@@ -17,17 +17,24 @@ function LoginPage() {
         setError(null); // Clear any previous error
 
         try {
-            const userId = await login(email, password); // Call the login function
-            Clogin(userId); // Save user ID in context
-            navigate('/');
+            const [userId, isAdmin] = await login(email, password); // Call the login function
+            Clogin(userId, isAdmin); // Save user ID in context
+        
+            // Check the previous page
+            const previousPage = document.referrer;
+            if (!previousPage.includes('/signup')) {
+                navigate(-1);
+            } else {
+                navigate('/'); // Or navigate to a default page if the last page was /signup
+            }
         } catch (err) {
             setError(err.message); // Display error message
         }
+        
     };
 
     return (
         <div className={styles.loginContainer}>
-            <h2 className={styles.title}>Login</h2>
             {error && <p className={styles.errorMessage}>{error}</p>}
             <form onSubmit={handleLogin} className={styles.loginForm}>
                 <div className={styles.formGroup}>

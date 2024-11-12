@@ -18,9 +18,38 @@ export async function login(email, password) {
         const data = await response.json();
 
         // Assuming the response contains an ID
-        return data.id; // Return user ID
+        return [data.id, data.admin]; // Return user ID
     } catch (error) {
         console.error('Error during login:', error.message);
         throw error;
     }
 }
+
+// api/auth.js
+
+export async function signup(email, password, username) {
+    console.log(JSON.stringify({
+        email,
+        password,
+        username
+    }));
+    const response = await fetch('https://bingo.redata.app/api/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email,
+            password,
+            username
+        }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.message || 'Failed to sign up');
+    }
+
+    return data; // Should return { status: 'success', message: 'User registered successfully', user_id: ... }
+}
+

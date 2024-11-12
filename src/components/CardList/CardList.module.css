@@ -1,0 +1,24 @@
+/* CardList.module.css */
+
+.cardList {
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+
+
+.cardItem {
+    background-color: var(--gray);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+
+.cardItem p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: var(--black);
+}
