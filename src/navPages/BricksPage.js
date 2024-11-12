@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { Read, Update } from "../api/Bricks";
 import Modal from "../components/Modal/Modal";
+import { useAuth } from "../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function BricksPage() {
     const [bricks, setBricks] = useState([]);
     const [expanded, setExpanded] = useState(null);
+    const {admin} = useAuth();
+    const navigate = useNavigate();
 
     // Fetch bricks when component mounts
     useEffect(() => {
@@ -28,6 +32,10 @@ export default function BricksPage() {
             alert("Failed to save changes.");
         }
     };
+
+    useEffect(()=>{
+        if(!admin)navigate(-1);
+    },[admin])
 
     return (
         <div>
