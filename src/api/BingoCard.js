@@ -55,3 +55,25 @@ export async function Read(cardId = null, userId = null) {
         throw error;
     }
 }
+
+export async function LeaderBoard(user_id) {
+    try {
+        // Send GET request to the leaderboard endpoint with the user_id as a query parameter
+        const response = await fetch(`https://bingo.redata.app/api/leaderboard?user_id=${user_id}`);
+        
+        // Check if the response is successful
+        if (!response.ok) {
+            throw new Error(`Failed to fetch leaderboard: ${response.statusText}`);
+        }
+
+        // Parse the JSON response
+        const data = await response.json();
+        
+        // Return the leaderboard data
+        return data;
+    } catch (error) {
+        // Log and rethrow any errors for further handling
+        console.error("Error fetching leaderboard:", error);
+        throw error;
+    }
+}
