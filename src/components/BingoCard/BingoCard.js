@@ -65,7 +65,7 @@ function BingoCell({ cell, onClick }) {
 
 function ExpandedCell({ cell }) {
     return (
-        <div className={styles.container}>
+        <div>
             <h3 className={styles.title}>{cell.title}</h3>
             <p className={styles.description}>{cell.description}</p>
             <div className={styles.status}>

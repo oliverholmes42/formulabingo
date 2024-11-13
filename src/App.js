@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, Outlet } from "react-router-dom";
-import HomePage from "./navPages/HomePage";
+import HomePage from "./navPages/HomePage/HomePage";
 import CardsPage from "./navPages/CardsPage";
 import LeaderboardPage from "./navPages/LeaderboardPage";
 import ProfilePage from "./navPages/ProfilePage";

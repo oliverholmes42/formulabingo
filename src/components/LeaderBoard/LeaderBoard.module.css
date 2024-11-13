@@ -1,16 +1,13 @@
 /* Container for the leaderboard */
 .container {
-    min-width: 350px;
+    max-width: 1000px;
     margin: 20px auto;
-    padding: 20px;
-    background-color: var(--gray);
-    border-radius: 10px;
     text-align: center;
 }
 
 /* Leaderboard title */
 .title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     font-weight: bold;
     color: var(--red);
     margin-bottom: 20px;
@@ -20,59 +17,44 @@
 .table {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 20px;
 }
 
-/* Individual row styling */
+/* Individual row with card-like styling */
 .row {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
     background-color: var(--white);
-    border-radius: 8px;
-    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+    border-left: 6px solid var(--red); /* Accent border on the left */
+    border-radius: 10px;
+    box-shadow: 0px 6px 14px rgba(0, 0, 0, 0.1); /* Enhanced shadow for a bold card effect */
+    transition: transform 0.2s, box-shadow 0.2s;
+    gap: 20px;
+    cursor: pointer;
+    width: 100%;
 }
 
-/* Styling for the current user when highlighted in the top 3 */
+.row:hover {
+    transform: translateY(-3px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15); /* Lift effect on hover */
+}
+
+/* Styling for the current user when highlighted */
 .currentUser {
-    border: 2px solid #FFD700; /* Gold border for the current user */
+    border-left: 6px solid var(--gold); /* Gold border for the current user */
 }
 
-/* Rank styling */
+/* Rank styling with color distinction */
 .rank {
     font-weight: bold;
-    font-size: 1.2rem;
-    color: var(--black);
-    width: 30px;
+    font-size: 1.5rem;
     text-align: center;
-}
-
-/* Name styling */
-.name {
-    flex: 1;
-    font-size: 1.1rem;
-    color: var(--black);
-    text-align: left;
-    padding-left: 10px;
-}
-
-/* Points styling */
-.points {
-    font-size: 1rem;
-    font-weight: bold;
+    min-width: 60px;
     color: var(--black);
 }
 
-/* Ellipsis row styling */
-.ellipsis {
-    font-size: 1.2rem;
-    color: var(--black);
-    text-align: center;
-    margin: 10px 0;
-    opacity: 0.6; /* Slightly faded */
-}
-
+/* Rank colors for the top 3 */
 .rankGold {
     color: var(--gold);
 }
@@ -87,4 +69,41 @@
 
 .rankDefault {
     color: var(--black);
+}
+
+/* Main content styling */
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    flex: 1;
+}
+
+.name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--black);
+}
+
+/* Points and card ID styling horizontally aligned */
+.horizontalInfo {
+    display: flex;
+    gap: 20px;
+    font-size: 1.1rem;
+    color: var(--black);
+}
+
+.points {
+    font-weight: bold;
+    color: var(--red);
+}
+
+/* Ellipsis row styling */
+.ellipsis {
+    font-size: 1.5rem;
+    color: var(--black);
+    text-align: center;
+    margin: 15px 0;
+    opacity: 0.6;
 }

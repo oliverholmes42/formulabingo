@@ -8,7 +8,7 @@
     --bronze: #cd7f32;
 
   }
-  
+
 
 *{
     margin: 0;
@@ -27,17 +27,17 @@ button {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
-  
+
   button:hover {
     background-color: #e60000; /* Slightly darker red for hover */
     transform: scale(1.05); /* Small pop effect */
   }
-  
+
   button:active {
     background-color: #cc0000; /* Even darker red for active state */
     transform: scale(1); /* Reset scale */
   }
-  
+
   button:disabled {
     background-color: var(--gray); /* Disabled button */
     color: var(--black);
@@ -53,7 +53,7 @@ button {
     transform: scale(1.03);
     cursor: pointer;
   }
-  
+
   html, body {
     height: 100%;
     margin: 0;
@@ -68,7 +68,7 @@ button {
 
 /* Styling for input fields */
 input{
-  width: 100%;
+  width: auto;
   padding: 10px;
   margin-top: 8px;
   margin-bottom: 16px;
@@ -113,4 +113,3 @@ textarea{
 
 /* Example adjustment: Replace <NavBarHeight> with a fixed or dynamic value */
 
-  
