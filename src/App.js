@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, O
 import HomePage from "./navPages/HomePage/HomePage";
 import CardsPage from "./navPages/CardsPage";
 import LeaderboardPage from "./navPages/LeaderboardPage";
-import ProfilePage from "./navPages/ProfilePage";
+import ProfilePage from "./navPages/ProfilePage/ProfilePage";
 import './App.css';
 import NavBar from "./components/navBar/NavBar";
 import { AuthProvider } from "./Context/AuthContext";

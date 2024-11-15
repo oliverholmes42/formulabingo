@@ -28,11 +28,6 @@ export async function login(email, password) {
 // api/auth.js
 
 export async function signup(email, password, username) {
-    console.log(JSON.stringify({
-        email,
-        password,
-        username
-    }));
     const response = await fetch('https://bingo.redata.app/api/signup', {
         method: 'POST',
         headers: {
@@ -51,5 +46,27 @@ export async function signup(email, password, username) {
     }
 
     return data; // Should return { status: 'success', message: 'User registered successfully', user_id: ... }
+}
+
+export async function changePassword(id, old, newPassword){
+    const response = await fetch('https://bingo.redata.app/api/changePassword', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            id,
+            old,
+            "new": newPassword
+        }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+        throw new Error(data.message || 'Failed to sign up');
+    }
+
+    return data; // Should return { status: 'success', message: 'User registered successfully', user_id: ... }
+
 }
 

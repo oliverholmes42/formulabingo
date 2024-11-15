@@ -16,13 +16,11 @@ export default function BingoCardPage() {
     const create = async () => {
         setLoading(true);
         try {
-            const newCard = await Create(id); // Use `id` from AuthContext as `userId`
-            console.log('New Bingo Card Created:', newCard);
+            await Create(id); // Use `id` from AuthContext as `userId`
+            await fetchBingoCards();
 
-            // Fetch and display the created card
-            fetchCard(newCard.card_id);
         } catch (error) {
-            console.error('Failed to create bingo card:', error);
+            console.error("Failed to create bingo card:", error);
         } finally {
             setLoading(false);
         }
@@ -35,27 +33,28 @@ export default function BingoCardPage() {
             const card = await Read(card_id);
             setSelectedCard(card);
         } catch (error) {
-            console.error('Failed to fetch bingo card:', error);
+            console.error("Failed to fetch bingo card:", error);
         } finally {
             setLoading(false);
         }
     };
 
+    const fetchBingoCards = async () => {
+        if (id) {
+            setLoading(true);
+            try {
+                const userCards = await Read(null, id); // Fetch all bingo cards for the user
+                setCards(userCards);
+            } catch (error) {
+                console.error("Failed to fetch bingo cards for user:", error);
+            } finally {
+                setLoading(false);
+            }
+        }
+    };
+
     // Fetch all bingo cards for the user on component mount
     useEffect(() => {
-        const fetchBingoCards = async () => {
-            if (id) {
-                setLoading(true);
-                try {
-                    const userCards = await Read(null, id); // Fetch all bingo cards for the user
-                    setCards(userCards);
-                } catch (error) {
-                    console.error('Failed to fetch bingo cards for user:', error);
-                } finally {
-                    setLoading(false);
-                }
-            }
-        };
 
         fetchBingoCards();
     }, [id]);
@@ -69,26 +68,13 @@ export default function BingoCardPage() {
                 </Modal>
             )}
             {id && !selectedCard && (
-                cards.length ? <CardList cards={cards} fetchCard={fetchCard} /> : <CreateCard />
+                <CardList cards={cards} fetchCard={fetchCard} create={create} />
             )}
             {id && selectedCard && (
                 <SelectedCard />
             )}
         </>
     );
-
-    // Component to display the "Create" button if no cards are available
-    function CreateCard() {
-        return (
-            <>
-                <h2>Create Bingo Card</h2>
-                <button onClick={create} disabled={loading}>Create</button>
-            </>
-        );
-    }
-
-    // Component to display the list of existing cards
-
 
     // Component to display the selected bingo card and the "Back" button
     function SelectedCard() {

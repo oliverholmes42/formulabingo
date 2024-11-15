@@ -41,7 +41,6 @@ export default function BricksPage() {
     }, [admin]);
 
     const createBrick = async (newBrick) => {
-        console.log(newBrick);
         await Create(newBrick);
     };
 
