@@ -5,7 +5,7 @@ export async function Read(id){
         return data;
     }
     catch (error) {
-        console.log(error)
+
     }
 
 }

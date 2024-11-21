@@ -59,7 +59,7 @@ const flagCell = async (updatedItem) => {
     }
     const result = await Update(item);
     if (result.status === "success") {
-        console.log("Item flagged")
+
     } else {
         alert("Failed to save changes.");
     }

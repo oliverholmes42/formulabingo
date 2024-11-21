@@ -41,7 +41,7 @@ export default function EditProfile({ user, onSave, onChangePassword }) {
             await onChangePassword(passwordData.oldPassword, passwordData.newPassword); // Call password change API
             setIsChangingPassword(false); // Go back to profile edit mode
         } catch (err) {
-            console.log(err)
+
             setError("Failed to change password. Please try again.");
         } finally {
             setLoading(false);

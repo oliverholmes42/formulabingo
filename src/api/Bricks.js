@@ -11,7 +11,7 @@ export async function Read() {
 }
 
 export async function Update(updatedData){
-    console.log(updatedData);
+
     const response = await fetch(`https://bingo.redata.app/api/bricks/${updatedData.brick_id}`, {
         method: 'PUT',
         headers: {

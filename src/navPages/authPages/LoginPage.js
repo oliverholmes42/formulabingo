@@ -19,18 +19,12 @@ function LoginPage() {
         try {
             const [userId, isAdmin] = await login(email, password); // Call the login function
             Clogin(userId, isAdmin); // Save user ID in context
-        
-            // Check the previous page
-            const previousPage = document.referrer;
-            if (!previousPage.includes('/signup')) {
-                navigate(-1);
-            } else {
-                navigate('/'); // Or navigate to a default page if the last page was /signup
-            }
+            navigate('/'); // Or navigate to a default page if the last page was /signup
+
         } catch (err) {
             setError(err.message); // Display error message
         }
-        
+
     };
 
     return (

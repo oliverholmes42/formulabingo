@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
             if (!sessionStorage.getItem("userId")) {
                 setId(null);
                 setAdmin(false);
-                console.log("Session expired. User logged out.");
+
             }
         }, 600000); // 10 minutes in milliseconds
 
@@ -52,7 +52,7 @@ export function AuthProvider({ children }) {
                     setId(null);
                     setAdmin(false);
                     sessionStorage.clear();
-                    console.log("Session edited. User logged out.");
+
                 }
             }, 5000);
         }

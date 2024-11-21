@@ -41,7 +41,7 @@ export default function Profile() {
         try {
             await changePassword(id, oldPassword, newPassword);
         }catch (Error){
-            console.log(Error)
+
         }
     }
 

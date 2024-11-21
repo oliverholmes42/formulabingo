@@ -32,7 +32,7 @@ export default function BingoCardPage() {
         try {
             const card = await Read(card_id);
             setSelectedCard(card);
-            console.log(card)
+
         } catch (error) {
             console.error("Failed to fetch bingo card:", error);
         } finally {
@@ -46,7 +46,7 @@ export default function BingoCardPage() {
             try {
                 const userCards = await Read(null, id); // Fetch all bingo cards for the user
                 setCards(userCards);
-                console.log(userCards)
+
             } catch (error) {
                 console.error("Failed to fetch bingo cards for user:", error);
             } finally {
