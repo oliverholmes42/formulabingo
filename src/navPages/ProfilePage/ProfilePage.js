@@ -10,7 +10,7 @@ import EditProfile from "../../components/EditProfile/EditProfile";
 import {changePassword} from "../../api/auth"; // Import the CSS module
 
 export default function Profile() {
-    const { id } = useAuth();
+    const { id, logout } = useAuth();
     const navigate = useNavigate();
     const [userData, setUserData] = useState({});
     const [edit, setEdit] = useState(false);
@@ -71,6 +71,7 @@ export default function Profile() {
                     </div>
                 </div>
             </div>
+            <button style={{margin: "20px 0 0 auto"}} onClick={logout}>Log Out</button>
             {edit &&
                 <Modal closeModal={()=>setEdit(false)}>
                     <EditProfile user={userData} onSave={submit} onChangePassword={changePass}/>

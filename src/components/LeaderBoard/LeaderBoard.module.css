@@ -32,7 +32,6 @@
     transition: transform 0.2s, box-shadow 0.2s;
     gap: 20px;
     cursor: pointer;
-    width: 100%;
 }
 
 .row:hover {
@@ -50,7 +49,7 @@
     font-weight: bold;
     font-size: 1.5rem;
     text-align: center;
-    min-width: 60px;
+    min-width: 40px;
     color: var(--black);
 }
 

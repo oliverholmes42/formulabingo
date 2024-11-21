@@ -2,17 +2,19 @@
 
 /* Container for the entire bingo card */
 .bingoCard {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin: 20px auto;
-    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Five columns for bingo */
+    row-gap: 16px; /* Increases the vertical space between rows */
+    column-gap: 8px; /* Keeps the column spacing unchanged */
+    padding: clamp(0px, 2vw, 50px);
     background-color: var(--white);
     border-radius: 12px;
+    margin: 20px auto;
     width: 90%;
     max-width: 700px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* Soft shadow */
 }
+
 
 /* Header styling */
 .Header {
@@ -23,18 +25,8 @@
     margin-bottom: 1rem;
 }
 
-/* Each row of cells */
-.row {
-    display: flex;
-    gap: 8px;
-    justify-content: space-evenly;
-}
-
 /* Base styling for each cell */
 .cell {
-    flex: 1;
-    aspect-ratio: 1 / 1;
-    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,12 +34,13 @@
     border-radius: 10px;
     background-color: #f7f7f7;
     color: var(--black);
-    font-size: 1rem;
+    font-size: clamp(0.5rem, 2vw, 1rem); /* Responsive font size */
     font-weight: bold;
     position: relative;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     cursor: pointer;
+    aspect-ratio: 1 / 1; /* Maintains square aspect ratio */
 }
 
 .cell:hover {
@@ -55,19 +48,39 @@
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
 }
 
+/* Focused cell for accessibility */
+.cell:focus {
+    outline: 3px solid var(--red);
+    outline-offset: 2px;
+}
+
 /* Claimed cell styling with border */
 .status-true {
     border: 2px solid var(--red);
-    background-color: rgba(255, 24, 1, 0.1); /* Subtle red highlight */
+    background: linear-gradient(145deg, rgba(255, 24, 1, 0.1), rgba(255, 24, 1, 0.2)); /* Subtle gradient highlight */
 }
 
 /* Boost colors for cells */
 .boost-2 {
     background-color: #FFE6A1;
+    animation: pulse 1.5s infinite; /* Animated boost */
 }
 
 .boost-3 {
     background-color: #FFD700;
+    animation: pulse 1.5s infinite; /* Animated boost */
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 4px rgba(255, 214, 120, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 10px rgba(255, 214, 120, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 4px rgba(255, 214, 120, 0.5);
+    }
 }
 
 /* Expanded cell modal container */

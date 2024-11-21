@@ -1,4 +1,6 @@
 import { Navigate, NavLink, useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHome, faUserCircle, faTrophy, faCogs, faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 import styles from './NavBar.module.css';
 import { useAuth } from '../../Context/AuthContext';
 
@@ -14,7 +16,7 @@ export default function NavBar() {
         navigate('/signup');
     }
 
-    const NavItem = ({ name, to }) => {
+    const NavItem = ({ name = "", icon = null, to }) => {
         return (
             <NavLink
                 to={to}
@@ -23,19 +25,20 @@ export default function NavBar() {
                 }
             >
                 <h3>{name}</h3>
+                {icon && <FontAwesomeIcon icon={icon} size={"xl"}/>}
             </NavLink>
         );
     };
 
     return (
         <div className={styles.NavBar}>
-            <div className={styles.logo}><h1>Formula Bingo</h1></div>
-            <div className={styles.nav}>
-                <NavItem name="Home" to="/" />
-                <NavItem name="Cards" to="/cards" />
-                <NavItem name="Leaderboard" to="/leaderboard" />
+            <div className={styles.logo}><h1>Grand Prix Bingo</h1></div>
+            <div className={`${styles.nav} Desktop`}>
+                <NavItem name="Home" to="/"/>
+                <NavItem name="Cards" to="/cards"/>
+                <NavItem name="Leaderboard" to="/leaderboard"/>
                 {admin && <NavItem name="Bricks" to="/bricks"/>}
-                {id && <NavItem name="Profile" to="/profile" />}
+                {id && <NavItem name="Profile" to="/profile"/>}
                 {id ? (
                     <button className={styles.button} onClick={logout}>Log out</button>
                 ) : (
@@ -45,6 +48,16 @@ export default function NavBar() {
                     </div>
                 )}
             </div>
+            <div className={`${styles.MobileNav} Mobile`}>
+                <NavItem icon={faHome} to="/"/>
+                <NavItem icon={faLayerGroup} to="/cards"/>
+                <NavItem icon={faTrophy} to="/leaderboard"/>
+                {admin && <NavItem icon={faCogs} to="/bricks"/>}
+                {id && <NavItem icon={faUserCircle} to="/profile"/>}
+
+            </div>
+
+
         </div>
     );
 }

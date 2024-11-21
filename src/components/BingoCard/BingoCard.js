@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import styles from "./BingoCard.module.css";
 import Modal from "../Modal/Modal";
+import {Update} from "../../api/Bricks";
 
 export default function BingoCard({ selectedCard }) {
     const { card_id, bricks, points } = selectedCard;
@@ -20,14 +21,17 @@ export default function BingoCard({ selectedCard }) {
 
     return (
         <>
-            <div className={styles.bingoCard}>
+            <div className={styles.PointTally}>
                 <h2 className={styles.Header}>Bingo Card #{card_id}</h2>
+            </div>
+            <div className={styles.bingoCard}>
+
                 {rows.map((row, rowIndex) => (
-                    <BingoRow key={`row-${rowIndex}`} row={row} onCellClick={setExpanded} />
+                    <BingoRow key={`row-${rowIndex}`} row={row} onCellClick={setExpanded}/>
                 ))}
                 {expanded && (
                     <Modal closeModal={closeModal}>
-                        <ExpandedCell cell={expanded} />
+                        <ExpandedCell cell={expanded}/>
                     </Modal>
                 )}
             </div>
@@ -38,7 +42,7 @@ export default function BingoCard({ selectedCard }) {
     );
 }
 
-function BingoRow({ row, onCellClick }) {
+function BingoRow({row, onCellClick}) {
     return (
         <div className={styles.row}>
             {row.map((cell) => (
@@ -47,6 +51,20 @@ function BingoRow({ row, onCellClick }) {
         </div>
     );
 }
+
+const flagCell = async (updatedItem) => {
+    const item = {
+        brick_id: updatedItem.brick_id,
+        flagged: 1
+    }
+    const result = await Update(item);
+    if (result.status === "success") {
+        console.log("Item flagged")
+    } else {
+        alert("Failed to save changes.");
+    }
+};
+
 
 function BingoCell({ cell, onClick }) {
     const cellClass = `
@@ -66,8 +84,13 @@ function BingoCell({ cell, onClick }) {
 function ExpandedCell({ cell }) {
     return (
         <div>
-            <h3 className={styles.title}>{cell.title}</h3>
-            <p className={styles.description}>{cell.description}</p>
+            <div style={{display: "flex", gap: "10px", alignItems: "center", justifyContent: "center"}}>
+                <h3 className={styles.title}>{cell.title}</h3>
+                <button style={{fontSize: "12px", padding: "5px"}} onClick={()=>flagCell(cell)}>Flag</button>
+            </div>
+
+
+            <p className={styles.description} style={{whiteSpace: "pre-wrap"}}>{cell.description}</p>
             <div className={styles.status}>
                 <span className={`${styles.statusLabel} ${cell.status ? styles.claimed : styles.locked}`}>
                     {cell.status ? "Claimed" : "Locked"}

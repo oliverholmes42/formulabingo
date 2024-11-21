@@ -40,6 +40,27 @@ export function AuthProvider({ children }) {
         return () => clearInterval(checkSession); // Clean up interval on component unmount
     }, []);
 
+    useEffect(() => {
+        let checkSession;
+
+        if (id && admin !== null) {
+            checkSession = setInterval(() => {
+                const storedUserId = sessionStorage.getItem("userId");
+                const storedAdmin = sessionStorage.getItem("admin") === "true"; // Convert to boolean
+
+                if (storedUserId !== String(id) || storedAdmin !== admin) {
+                    setId(null);
+                    setAdmin(false);
+                    sessionStorage.clear();
+                    console.log("Session edited. User logged out.");
+                }
+            }, 5000);
+        }
+
+        return () => {
+            if (checkSession) clearInterval(checkSession); // Clean up when user logs out or component unmounts
+        };
+    }, [id, admin, setId, setAdmin]); // Dynamically watch for id/admin changes
     // Value provided by the AuthContext
     const value = {
         id,

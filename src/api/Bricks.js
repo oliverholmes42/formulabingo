@@ -35,6 +35,7 @@ export async function Latest(){
     return response.json();
 }
 
+
 export async function Create(brickData) {
     const response = await fetch('https://bingo.redata.app/api/bricks', {
         method: 'POST',

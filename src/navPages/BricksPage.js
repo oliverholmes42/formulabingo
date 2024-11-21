@@ -24,6 +24,7 @@ export default function BricksPage() {
 
     // Save changes and update bricks
     const saveChanges = async (updatedItem) => {
+        updatedItem.flagged = 0;
         const result = await Update(updatedItem);
         if (result.status === "success") {
             setBricks((prevBricks) =>
@@ -103,7 +104,23 @@ function BrickItem({ item, onEdit, onSave }) {
 
     return (
         <div>
-            <h2>{item.title}</h2>
+            <h2>
+                {item.title}
+                {(item.flagged === true || item.flagged === 1) && (
+                    <span
+                        style={{
+                            backgroundColor: "yellow",
+                            padding: "5px",
+                            margin: "5px",
+                            borderRadius: "10px",
+                        }}
+                    >
+            !
+        </span>
+                )}
+            </h2>
+
+
             <button
                 onClick={toggleStatus}
                 style={{
@@ -119,15 +136,17 @@ function BrickItem({ item, onEdit, onSave }) {
             >
                 {item.status ? "Active" : "Pending"}
             </button>
-            <button onClick={onEdit} style={{ marginLeft: "10px" }}>
+            <button onClick={onEdit} style={{marginLeft: "10px"}}>
                 Edit
             </button>
+
         </div>
     );
 }
 
-function EditBrick({ item = {}, onSave, onClose }) {
+function EditBrick({item = {}, onSave, onClose}) {
     const [formData, setFormData] = useState({
+        brick_id: item.brick_id,
         title: item.title || "",
         description: item.description || "",
         points: item.points || 100,

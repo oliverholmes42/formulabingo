@@ -27,7 +27,7 @@ export function Leaderboard({ data, title, setCard }) {
                         <div className={styles.content}>
                             <div className={styles.name}>{user.user_name}</div>
                             <div className={styles.horizontalInfo}>
-                                <span>Card ID: {user.card_id}</span>
+                                <span>Card #: {user.card_id}</span>
                                 <span className={styles.points}>{user.total_points} pts</span>
                             </div>
                         </div>
