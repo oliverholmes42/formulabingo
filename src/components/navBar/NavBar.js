@@ -21,8 +21,11 @@ export default function NavBar() {
             <NavLink
                 to={to}
                 className={({ isActive }) =>
-                    isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
+                    `${styles.navItem} 
+    ${isActive ? styles.active : ''} 
+    ${icon && isActive ? styles.mobileActive : ''}`
                 }
+
             >
                 <h3>{name}</h3>
                 {icon && <FontAwesomeIcon icon={icon} size={"xl"}/>}
@@ -37,7 +40,7 @@ export default function NavBar() {
                 <NavItem name="Home" to="/"/>
                 <NavItem name="Cards" to="/cards"/>
                 <NavItem name="Leaderboard" to="/leaderboard"/>
-                {admin && <NavItem name="Bricks" to="/bricks"/>}
+                {admin && <NavItem name="Admin" to="/admin/bricks"/>}
                 {id && <NavItem name="Profile" to="/profile"/>}
                 {id ? (
                     <button className={styles.button} onClick={logout}>Log out</button>
@@ -52,7 +55,7 @@ export default function NavBar() {
                 <NavItem icon={faHome} to="/"/>
                 <NavItem icon={faLayerGroup} to="/cards"/>
                 <NavItem icon={faTrophy} to="/leaderboard"/>
-                {admin && <NavItem icon={faCogs} to="/bricks"/>}
+                {admin && <NavItem icon={faCogs} to="/admin/bricks"/>}
                 {id && <NavItem icon={faUserCircle} to="/profile"/>}
 
             </div>

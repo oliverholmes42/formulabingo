@@ -7,7 +7,8 @@ import {useAuth} from "../../Context/AuthContext";
 import {Read, Update} from "../../api/User";
 import Modal from "../../components/Modal/Modal";
 import EditProfile from "../../components/EditProfile/EditProfile";
-import {changePassword} from "../../api/auth"; // Import the CSS module
+import {changePassword} from "../../api/auth";
+import {Helmet} from "react-helmet-async"; // Import the CSS module
 
 export default function Profile() {
     const { id, logout } = useAuth();
@@ -25,6 +26,7 @@ export default function Profile() {
             };
             fetchData();
         }
+
     }, [id]);
 
     const submit = async (data) => {
@@ -47,6 +49,19 @@ export default function Profile() {
 
 
     return (
+        <>
+            <Helmet>
+                <title>Your Profile - GrandPrixBingo</title>
+                <meta
+                    name="description"
+                    content="View and edit your profile on GrandPrixBingo. Check your stats and manage your account."
+                />
+                <meta
+                    name="keywords"
+                    content="F1 profile, user account, GrandPrixBingo, Formula 1"
+                />
+                <link rel="canonical" href="https://GrandPrixBingo.com/profile" />
+            </Helmet>
         <div className={styles.profileContainer}>
             <div className={styles.profileCard}>
                 <div className={styles.profileDetails}>
@@ -69,6 +84,10 @@ export default function Profile() {
                         <h3>Bingo Cards</h3>
                         <p>{userData.card_count || 0}</p>
                     </div>
+                    <div className={styles.statCard}>
+                        <h3>Boosts</h3>
+                        <p>{userData.boosts || 0}</p>
+                    </div>
                 </div>
             </div>
             <button style={{margin: "20px 0 0 auto"}} onClick={logout}>Log Out</button>
@@ -77,5 +96,6 @@ export default function Profile() {
                     <EditProfile user={userData} onSave={submit} onChangePassword={changePass}/>
                 </Modal>}
         </div>
+        </>
     );
 }

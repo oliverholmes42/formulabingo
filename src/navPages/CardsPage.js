@@ -5,6 +5,7 @@ import BingoCard from "../components/BingoCard/BingoCard";
 import Modal from "../components/Modal/Modal";
 import LoginRedirect from "../components/LoginRedirect/LoginRedirect";
 import CardList from "../components/CardList/CardList";
+import {Helmet} from "react-helmet-async";
 
 export default function BingoCardPage() {
     const { id } = useAuth(); // Get the user ID from AuthContext
@@ -63,7 +64,18 @@ export default function BingoCardPage() {
 
     return (
         <>
-            {loading && <p>Loading...</p>}
+            <Helmet>
+                <title>Your Bingo Cards - GrandPrixBingo</title>
+                <meta
+                    name="description"
+                    content="Manage and track your F1 bingo cards. Note down events and earn points for your leaderboard ranking."
+                />
+                <meta
+                    name="keywords"
+                    content="F1 bingo cards, points, GrandPrixBingo, track events"
+                />
+                <link rel="canonical" href="https://GrandPrixBingo.com/cards" />
+            </Helmet>
             {!id && (
                 <Modal>
                     <LoginRedirect />

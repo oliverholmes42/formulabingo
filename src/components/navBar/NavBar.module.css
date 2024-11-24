@@ -29,7 +29,7 @@
     left: 0;
     width: 100%; /* Full width of the screen */
     height: 60px; /* Height of the navbar */
-    background-color: var(--red); /* Red styling */
+    background-color: var(--white); /* Red styling */
     display: flex; /* Flexbox for layout */
     justify-content: space-around; /* Evenly space items */
     align-items: center; /* Center items vertically */
@@ -40,7 +40,7 @@
 /* Style for navigation items */
 .MobileNav a {
     text-decoration: none; /* Remove underline */
-    color: white; /* White text for contrast */
+    color: var(--gray); /* White text for contrast */
     font-size: 16px; /* Adjust text size */
     font-weight: 500; /* Slightly bold for visibility */
     transition: color 0.2s ease; /* Smooth hover effect */
@@ -65,9 +65,12 @@
 }
 
 .active {
-    color: var(--white);
     font-weight: bold;
     border-bottom: 3px solid var(--white); /* Adds a distinct underline for the active link */
+}
+
+.mobileActive {
+    color: var(--red) !important;
 }
 
 .button {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Create, Read, Update } from "../api/Bricks";
-import Modal from "../components/Modal/Modal";
-import { useAuth } from "../Context/AuthContext";
+import { Create, Read, Update } from "../../../api/Bricks";
+import Modal from "../../../components/Modal/Modal";
+import { useAuth } from "../../../Context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function BricksPage() {
@@ -24,7 +24,6 @@ export default function BricksPage() {
 
     // Save changes and update bricks
     const saveChanges = async (updatedItem) => {
-        updatedItem.flagged = 0;
         const result = await Update(updatedItem);
         if (result.status === "success") {
             setBricks((prevBricks) =>
@@ -102,11 +101,16 @@ function BrickItem({ item, onEdit, onSave }) {
         onSave({ ...item, status: !item.status });
     };
 
+    const toggleFlag = () => {
+        onSave({ ...item, flagged: !item.flagged });
+    };
+
+
     return (
         <div>
             <h2>
                 {item.title}
-                {(item.flagged === true || item.flagged === 1) && (
+                {(item.flagged) && (
                     <span
                         style={{
                             backgroundColor: "yellow",
@@ -114,6 +118,7 @@ function BrickItem({ item, onEdit, onSave }) {
                             margin: "5px",
                             borderRadius: "10px",
                         }}
+                        onClick={toggleFlag}
                     >
             !
         </span>
@@ -151,6 +156,7 @@ function EditBrick({item = {}, onSave, onClose}) {
         description: item.description || "",
         points: item.points || 100,
         status: item.status || false,
+        flagged: item.flagged || false
     });
 
     const handleChange = (e) => {
@@ -171,7 +177,14 @@ function EditBrick({item = {}, onSave, onClose}) {
             ...prev,
             status: !prev.status,
         }));
-    };
+    }
+
+    const toggleFlag = () => {
+        setFormData((prev) => ({
+            ...prev,
+            flagged: !prev.flagged,
+        }));
+    }
 
     return (
         <Modal closeModal={onClose}>
@@ -212,7 +225,21 @@ function EditBrick({item = {}, onSave, onClose}) {
                 onChange={handleChange}
                 placeholder="Points"
             />
-            <div style={{ display: "flex", justifyContent: "end", gap: "10px" }}>
+            <button
+                onClick={toggleFlag}
+                style={{
+                    backgroundColor: formData.flagged ? "yellow" : "grey",
+                    color: "white",
+                    padding: "5px 10px",
+                    border: "none",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    marginLeft: "10px",
+                }}
+            >
+                {formData.flagged ? "Flagged" : "Nothing"}
+            </button>
+            <div style={{display: "flex", justifyContent: "end", gap: "10px"}}>
                 <button onClick={handleSave}>Save</button>
                 <button onClick={onClose}>Cancel</button>
             </div>

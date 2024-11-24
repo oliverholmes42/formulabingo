@@ -1,0 +1,15 @@
+.navItem{
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.active{
+    color: var(--red)
+}
+
+.navBar{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 15px;
+}

@@ -10,6 +10,16 @@ export async function Read(id){
 
 }
 
+export async function ReadAll() {
+    try {
+        const response = await fetch('https://www.bingo.redata.app/api/users/');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+
+    }
+}
+
 export async function Update(id, data) {
     const response = await fetch(`https://bingo.redata.app/api/users/${id}`, {
         method: 'PUT',

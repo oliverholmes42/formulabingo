@@ -39,7 +39,7 @@
 
 /* Input */
 .input, .textarea {
-    width: 100%;
+    width: 75%;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;

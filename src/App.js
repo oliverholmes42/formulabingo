@@ -8,8 +8,11 @@ import './App.css';
 import NavBar from "./components/navBar/NavBar";
 import { AuthProvider } from "./Context/AuthContext";
 import LoginPage from "./navPages/authPages/LoginPage";
-import BricksPage from "./navPages/BricksPage";
+import BricksPage from "./navPages/AdminPage/pages/BricksPage";
 import SignupPage from "./navPages/authPages/SignupPage";
+import AdminPage from "./navPages/AdminPage/AdminPage";
+import UserPage from "./navPages/AdminPage/pages/UserPage";
+import {HelmetProvider} from "react-helmet-async";
 
 function Layout() {
   return (
@@ -27,7 +30,10 @@ const router = createBrowserRouter(
       <Route path="/cards" element={<CardsPage />} />
       <Route path="/leaderboard" element={<LeaderboardPage />} />
       <Route path="/profile" element={<ProfilePage />} />
-      <Route path="/bricks" element={<BricksPage/>}/>
+      <Route path="/admin" element={<AdminPage/>}>
+          <Route path="bricks" element={<BricksPage />} />
+          <Route path="users" element={<UserPage/>}/>
+      </Route>
       <Route path="/login" element={<LoginPage />}/>
       <Route path="/signup" element={<SignupPage/>}/>
     </Route>
@@ -37,7 +43,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <AuthProvider>
-      <RouterProvider router={router} />
+        <HelmetProvider>
+            <RouterProvider router={router} />
+        </HelmetProvider>
     </AuthProvider>
   );
 }

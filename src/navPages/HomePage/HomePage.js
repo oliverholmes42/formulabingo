@@ -2,10 +2,23 @@ import { useEffect, useState } from "react"
 import { Latest } from "../../api/Bricks"
 
 import styles from './HomePage.module.css';
+import {Helmet} from "react-helmet-async";
 
 function LatestEvents({ events }) {
     return (
-        <div>
+        <>
+            <Helmet>
+                <title>GrandPrixBingo - F1 Bingo Service</title>
+                <meta
+                    name="description"
+                    content="Explore the latest events and learn about GrandPrixBingo, the ultimate F1 bingo app where you can compete, track, and compare with friends."
+                />
+                <meta
+                    name="keywords"
+                    content="F1, Formula 1, bingo, F1 events, racing, leaderboard"
+                />
+                <link rel="canonical" href="https://GrandPrixBingo.com/" />
+            </Helmet>
             <h2 className={styles.eventsHeader}>Latest Events</h2>
             <div className={styles.eventsContainer}>
                 {events.map(event => (
@@ -24,7 +37,7 @@ function LatestEvents({ events }) {
                     </div>
                 ))}
             </div>
-        </div>
+        </>
     );
 }
 
